@@ -20,7 +20,16 @@ io.on('connection', (socket) => {
     messages.push(msg);
     console.log('Received message:', msg);
     io.emit('message', msg); // broadcast to everyone
-  });
+    
+    const msgWithTime = { // adds timestamp to msg
+      ...msg,           
+      time: Date.now()
+    
+    };
+    console.log('Received message with time', msgWithTime);
+    io.emit('message', msgWithTime);
+
+   });
 });
 
 httpServer.listen(PORT, () => {
