@@ -26,8 +26,6 @@ io.on('connection', (socket) => {
       time: Date.now()
     
     };
-    console.log('Received message with time', msgWithTime);
-    io.emit('message', msgWithTime);
 
    });
 });
