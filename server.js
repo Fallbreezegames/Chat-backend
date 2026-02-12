@@ -1,6 +1,8 @@
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
+let messages = [];
+
 const PORT = process.env.PORT || 3001; // Render sets PORT automatically
 const httpServer = createServer();
 
@@ -12,8 +14,10 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
+  socket.emit('chatHistory', messages);
 
   socket.on('message', (msg) => {
+    messages.push(msg);
     console.log('Received message:', msg);
     io.emit('message', msg); // broadcast to everyone
   });
