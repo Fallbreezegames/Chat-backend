@@ -18,8 +18,8 @@ io.on('connection', (socket) => {
 
   socket.on('message', (msg) => {
     messages.push(msg);
-    console.log('Received message:', msg);
-    io.emit('message', msg); // broadcast to everyone
+    console.log('Received message with time', msgWithTime);
+    io.emit('message', msgWithTime); // broadcast to everyone
     
     const msgWithTime = { // adds timestamp to msg
       ...msg,           
