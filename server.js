@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     
   };
 
-    messages.push(msg);
+    messages.push(msgWithTime);
     console.log('Received message with time', msgWithTime);
     io.emit('message', msgWithTime); // broadcast to everyone
     
@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
 });
 
 httpServer.listen(PORT, () => {
-  console.log('Server listening on ${PORT}');
+  console.log(`Server listening on ${PORT}`);
 });
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
