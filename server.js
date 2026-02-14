@@ -17,15 +17,17 @@ io.on('connection', (socket) => {
   socket.emit('chatHistory', messages);
 
   socket.on('message', (msg) => {
+
+    const msgWithTime = { // adds timestamp to msg
+    ...msg,           
+    time: Date.now()
+    
+  };
+
     messages.push(msg);
     console.log('Received message with time', msgWithTime);
     io.emit('message', msgWithTime); // broadcast to everyone
     
-    const msgWithTime = { // adds timestamp to msg
-      ...msg,           
-      time: Date.now()
-    
-    };
 
    });
 });
